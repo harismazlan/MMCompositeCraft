@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Make:</strong>
+  <%= @boat.make %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @boat.model %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @boat.year %>
+</p>
+
+<p>
+  <strong>Condition:</strong>
+  <%= @boat.condition %>
+</p>
+
+<p>
+  <strong>Price (RM):</strong>
+  <%= @boat.price %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @boat.make_type %>
+</p>
+
+<p>
+  <strong>Class:</strong>
+  <%= @boat.boat_class %>
+</p>
+
+<p>
+  <strong>Length (ft):</strong>
+  <%= @boat.length %>
+</p>
+
+<p>
+  <strong>Fuel type:</strong>
+  <%= @boat.fuel_type %>
+</p>
+
+<p>
+  <strong>Hull material:</strong>
+  <%= @boat.hull_material %>
+</p>
+
+<%= link_to 'Edit', edit_boat_path(@boat) %> |
+<%= link_to 'Back', boats_path %>
