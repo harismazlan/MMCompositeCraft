@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_18_085037) do
+ActiveRecord::Schema.define(version: 2019_02_19_052942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.datetime "appointment_date"
+    t.integer "appointment_status", default: 0
+    t.string "appointment_info"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
 
   create_table "authentications", force: :cascade do |t|
     t.string "uid"
@@ -52,5 +62,6 @@ ActiveRecord::Schema.define(version: 2019_02_18_085037) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "appointments", "users"
   add_foreign_key "authentications", "users"
 end

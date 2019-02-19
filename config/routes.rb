@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :boats
-  resources :users
+  resources :users do
+  	resources :appointments, except: [:all]
+  end
+  #nested resources for appointments to utilize association
+  resources :appointments, only: [:all]
   resources :sessions, only: [:new, :create, :destroy]
   
   root 'home#index'
@@ -9,5 +13,6 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
+  get 'all_appointments', to: 'appointments#all', as: 'all_appointments'
 
 end

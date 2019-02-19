@@ -1,0 +1,11 @@
+<h1>Editing Appointment</h1>
+
+<%= form_with model: [current_user, @appointment], local: true, scope: :appointment do |form| %>
+<!-- # local instead of remote because remote is for ajax, it will send data asynchronously
+# scope because in boat_params there is param.require -->
+  
+<%= render partial: 'form', object: form %>
+<%= form.submit %>
+<% end %>
+
+<%= link_to 'Back', user_appointments_path %>
