@@ -3,7 +3,8 @@ class User < ApplicationRecord
   has_many :authentications, dependent: :destroy
   validates :email, presence: true, uniqueness: true
   enum access_level: [:customer, :admin]
-
+  has_many :appointments, dependent: :destroy
+  # dependent :destroy --> to destroy the appointments if the user account is deleted
 
  def self.create_with_auth_and_hash(authentication, auth_hash)
    user = self.create!(

@@ -11,6 +11,16 @@
 
 <h1>Landing Page</h1>
 <p>Welcome to MMCompositeCraft!</p>
+<p>Please sign in to browse our products or schedule an appointment with us for some tweaks and special requests of your own!</p>
 
-<%= link_to "View Products", boats_path %> <br/>
-<%= link_to "View Users", users_path %>
+<% if current_user %>
+	<% if current_user.admin? %>
+		<%= link_to "View Products", boats_path(current_user.id) %>
+		<%= link_to "View Users", users_path(current_user.id) %>
+		<%= link_to "View All Appointments", all_appointments_path %>
+	<% else %>
+		<%= link_to "View Profile", user_path(current_user.id) %>
+		<%= link_to "Book An Appointment", new_user_appointment_path(current_user.id) %>
+		<%= link_to "View Your Appointments", user_appointments_path(current_user.id) %>
+	<% end %>
+<% end %>
