@@ -13,7 +13,9 @@
 								<th> When is it? </th>
 								<th> What is it about? </th>
 								<th> Appointment Status? </th>
+								<% if current_user.admin? %>
 								<th> Action </th>
+								<% end %>
 							</tr>
 						</thead>
 

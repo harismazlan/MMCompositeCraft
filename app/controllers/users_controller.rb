@@ -2,9 +2,12 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all
-    @users = @users.order(id: :asc).page(params[:page])
-
+    if params[:search]
+      @users = User.all.search_user(params[:search]).page params[:page]
+    else
+      @users = User.all
+      @users = @users.order(id: :asc).page(params[:page])
+    end
   end
 
   def show

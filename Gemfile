@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.0'
 
+# Use 'pg_search' for search function
+gem 'pg_search'
 # Use gem 'kaminari' for pagination
 gem 'kaminari'
 # Use gem 'faker' to seed users and boats

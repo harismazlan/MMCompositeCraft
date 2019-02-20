@@ -1,37 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title> View All Appointments </title>
-</head>
+<%= form_with url: all_appointments_path, method: 'get' do |form| %>
+	<%= form.text_field :search, placeholder: 'Search By User ID' %>
+	<%= form.submit 'Search', class:'btn btn-primary ml-2' %>
+<% end %>
 
-		<body>
-					<table>
-						<%= paginate @appointments %>
-							<thead>
-								<tr>
-									<th> When is it? </th>
-									<th> What is it about? </th>
-									<th> Appointment Status? </th>
-									<th> Action </th>
-								</tr>
-							</thead>
+<div id='appointment-container'>
+	<%= render partial:"appointments/all" %>
+</div>
 
-							<tbody>
-								<% @appointments.each do |appointment| %>
-								<tr>
-									<td><p> <%= appointment.appointment_date.strftime("%d/%m/%y %R") %> </p></td>
-									<td><p> <%= appointment.appointment_info %> </p></td>
-									<td><p> <%= appointment.appointment_status %> </p></td>
-									<% if current_user.admin? %>
-									<td><%= link_to 'Edit', edit_user_appointment_path(current_user.id, appointment.id) %> <%= link_to 'Delete', user_appointment_path(current_user.id, appointment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-										</td>
-									<% end %>
-								</tr>
-								
-								<% end %>
-							</tbody>
-					</table>
-				<%= paginate @appointments %>
-			<%= link_to 'Back', root_path %>
-		</body>
-</html>
