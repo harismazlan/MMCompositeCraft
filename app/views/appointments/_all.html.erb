@@ -17,10 +17,8 @@
 									<td><p> <%= appointment.appointment_date.strftime("%d/%m/%y %R") %> </p></td>
 									<td><p> <%= appointment.appointment_info %> </p></td>
 									<td><p> <%= appointment.appointment_status %> </p></td>
-									<% if current_user.admin? %>
-									<td><%= link_to 'Edit', edit_user_appointment_path(current_user.id, appointment.id) %> <%= link_to 'Delete', user_appointment_path(current_user.id, appointment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+									<td><%= link_to 'Show', user_appointment_path(current_user.id, appointment.id) %> <%= link_to 'Edit', edit_user_appointment_path(current_user.id, appointment.id) %> <%= link_to 'Delete', user_appointment_path(current_user.id, appointment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
 										</td>
-									<% end %>
 								</tr>
 								
 								<% end %>
