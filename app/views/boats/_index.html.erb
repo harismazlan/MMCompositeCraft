@@ -1,0 +1,51 @@
+<h1>Boats</h1>
+<%= paginate @boats %>
+<table>
+  <thead>
+    <tr>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Year</th>
+      <th>Condition</th>
+      <th>Price (RM)</th>
+      <th>Type</th>
+      <th>Class</th>
+      <th>Length (ft)</th>
+      <th>Fuel type</th>
+      <th>Hull material</th>
+      <th>Action</th>
+      <th colspan="12"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @boats.each do |boat, index| %>
+        <tr>
+          <td><%= boat.make %></td>
+          <td><%= boat.model %></td>
+          <td><%= boat.year %></td>
+          <td><%= boat.condition %></td>
+          <td><%= boat.price %></td>
+          <td><%= boat.make_type %></td>
+          <td><%= boat.boat_class %></td>
+          <td><%= boat.length %></td>
+          <td><%= boat.fuel_type %></td>
+          <td><%= boat.hull_material %></td>
+          <td><%= link_to 'Show', boat %> </td>
+      <% if current_user %>
+        <% if current_user.admin? %>
+          <td><%= link_to 'Edit', edit_boat_path(boat) %>  <%= link_to 'Destroy', boat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      <% end %>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= paginate @boats %>
+<% if current_user %>
+  <% if current_user.admin? %>
+    <%= link_to 'New Boat', new_boat_path %> 
+    <%= link_to 'Back', root_path %>
+  <% end %>
+<% end %>

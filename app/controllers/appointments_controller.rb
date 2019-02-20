@@ -50,6 +50,8 @@ class AppointmentsController < ApplicationController
 
 	def all
 		@appointments = Appointment.all
+		@appointments = @appointments.order(appointment_date: :asc).page(params[:page])
+
 	end
 
 	private

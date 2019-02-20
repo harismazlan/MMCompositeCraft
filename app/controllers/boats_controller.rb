@@ -1,8 +1,13 @@
 class BoatsController < ApplicationController
   before_action :set_boat, only: [:show, :edit, :update, :destroy]
+  # Boat.paginate(:page => params[:page], :per_page => 30)
+
 
   def index
     @boats = Boat.all
+    @boats = @boats.order(id: :asc).page(params[:page])
+
+    # @boats = Boat.paginate(:page => params[:page])
   end
 
   def show

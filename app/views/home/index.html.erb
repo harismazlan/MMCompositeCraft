@@ -20,6 +20,7 @@
 		<%= link_to "View All Appointments", all_appointments_path %>
 	<% else %>
 		<%= link_to "View Profile", user_path(current_user.id) %>
+		<%= link_to "View Products", boats_path(current_user.id) %>
 		<%= link_to "Book An Appointment", new_user_appointment_path(current_user.id) %>
 		<%= link_to "View Your Appointments", user_appointments_path(current_user.id) %>
 	<% end %>
