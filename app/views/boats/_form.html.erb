@@ -1,5 +1,4 @@
 <%= form_with url: boats_path, local: true, scope: :boat do |form| %>
-  
 
   <div class="field">
     <%= form.label :make %>
@@ -18,7 +17,7 @@
 
   <div class="field">
     <%= form.label :condition %>
-    <%= form.text_field :condition %>
+    <%= form.select(:condition, ['New','Used']) %>
   </div>
 
   <div class="field">
@@ -54,4 +53,5 @@
   <div class="actions">
     <%= form.submit %>
   </div>
+  
 <% end %>

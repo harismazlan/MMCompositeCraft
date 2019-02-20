@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>No.</th>
       <th>First name</th>
       <th>Last name</th>
       <th>Email</th>
@@ -14,8 +15,9 @@
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
+    <% @users.each_with_index do |user, index| %>
       <tr>
+        <td><%= index + 1 %></td>
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
         <td><%= user.email %></td>
@@ -29,6 +31,4 @@
 </table>
 
 <br>
-
 <%= link_to 'Back', root_path %>
-
