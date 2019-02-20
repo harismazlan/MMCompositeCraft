@@ -4,7 +4,6 @@ class AppointmentsController < ApplicationController
 	def index
 		@appointments = current_user.appointments
 		@appointments = @appointments.order(appointment_date: :asc).page(params[:page])
-
 	end
 
 	def new
@@ -28,6 +27,7 @@ class AppointmentsController < ApplicationController
 	end
 
 	def show
+		@appointment = Appointment.find(params[:id])		
 	end
 
 	def update

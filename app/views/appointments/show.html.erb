@@ -1,0 +1,4 @@
+<p> Appointment Date : <%= @appointment.appointment_date.strftime("%d/%m/%y %R") %> </p>
+<p> Appointment Info : <%= @appointment.appointment_info %> </p>
+<p> Appointment Status : <%= @appointment.appointment_status %> </p>
+<%= link_to 'Back', all_appointments_path %>
