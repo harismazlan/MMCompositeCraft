@@ -32,7 +32,7 @@ class AppointmentsController < ApplicationController
 
 	def update
 		if @appointment.update(appointment_params)
-			flash[:notice] = 'Appointment updated, please wait for a text on your phone to confirm the status'
+			flash[:notice] = 'Appointment updated!'
 			redirect_to user_appointments_path(current_user.id)
 		else
 			flash[:error] = 'Unfortunately something went wrong, please try again!'
@@ -55,8 +55,20 @@ class AppointmentsController < ApplicationController
 	        @appointments = Appointment.all.search_appointment(params[:search]).page params[:page]
 	    else
 			@appointments = Appointment.all
-			@appointments = @appointments.order(user_id: :asc).page(params[:page])
+			@appointments = @appointments.order(appointment_date: :asc).page(params[:page])
 	    end
+	end
+
+	def update_appointment_status
+	    appointment_status = params[:appointment_status].to_i
+	    appointment.update(status: appointment_status)
+	    if @appointment_status.update(appointment_params)
+	    	flash[:notice] = 'Appointment Status Changed'
+	    	redirect_to user_appointment_path(current_user.id, appointment.id)
+	    else
+	    	flash[:error] = 'Unfortunately something went wrong, please try again!'
+	    	redirect_to user_appointment_path(current_user.id, appointment.id)
+		end   
 	end
 
 	private
@@ -65,6 +77,7 @@ class AppointmentsController < ApplicationController
 		params.require(:appointment).permit(
 			:appointment_date,
 			:appointment_info,
+			:appointment_status,
 			:user_id
 		)
 	end
