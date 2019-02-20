@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.0'
 
+# Use gem 'kaminari' for pagination
+gem 'kaminari'
 # Use gem 'faker' to seed users and boats
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 # Use 'twilio-ruby' to feature an sms service for customers on the website to get more information

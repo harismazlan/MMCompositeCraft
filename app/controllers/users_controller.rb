@@ -3,6 +3,8 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @users = @users.order(id: :asc).page(params[:page])
+
   end
 
   def show
@@ -19,7 +21,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        session[:user_id] = @user.id
+        #creates a new session if user is saved, and redirects the user to the profile
+        format.html { redirect_to user_path(@user.id), notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }

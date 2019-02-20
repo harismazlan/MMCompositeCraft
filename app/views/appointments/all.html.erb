@@ -5,33 +5,33 @@
 </head>
 
 		<body>
-			<table>
-				<thead>
-					<tr>
-						<th> No. </th>
-						<th> When is it? </th>
-						<th> What is it about? </th>
-						<th> Appointment Status? </th>
-						<th> Action </th>
-					</tr>
-				</thead>
+					<table>
+						<%= paginate @appointments %>
+							<thead>
+								<tr>
+									<th> When is it? </th>
+									<th> What is it about? </th>
+									<th> Appointment Status? </th>
+									<th> Action </th>
+								</tr>
+							</thead>
 
-				<tbody>
-					<% @appointments.each_with_index do |appointment, index| %>
-					<tr>
-						<td><p> <%= index + 1 %></p></td>
-						<td><p> <%= appointment.appointment_date.strftime("%d/%m/%y %R") %> </p></td>
-						<td><p> <%= appointment.appointment_info %> </p></td>
-						<td><p> <%= appointment.appointment_status %> </p></td>
-						<% if current_user.admin? %>
-						<td><%= link_to 'Edit', edit_user_appointment_path(current_user.id, appointment.id) %> <%= link_to 'Delete', user_appointment_path(current_user.id, appointment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-							</td>
-						<% end %>
-					</tr>
-					
-					<% end %>
-				</tbody>
-			</table>
+							<tbody>
+								<% @appointments.each do |appointment| %>
+								<tr>
+									<td><p> <%= appointment.appointment_date.strftime("%d/%m/%y %R") %> </p></td>
+									<td><p> <%= appointment.appointment_info %> </p></td>
+									<td><p> <%= appointment.appointment_status %> </p></td>
+									<% if current_user.admin? %>
+									<td><%= link_to 'Edit', edit_user_appointment_path(current_user.id, appointment.id) %> <%= link_to 'Delete', user_appointment_path(current_user.id, appointment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+										</td>
+									<% end %>
+								</tr>
+								
+								<% end %>
+							</tbody>
+					</table>
+				<%= paginate @appointments %>
 			<%= link_to 'Back', root_path %>
 		</body>
 </html>
