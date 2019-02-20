@@ -1,9 +1,9 @@
 <h1>Editing Boat</h1>
 
 <%= form_with model: @boat, local: true, scope: :boat do |form| %>
-# local instead of remote because remote is for ajax, it will send data asynchronously
+<!-- # local instead of remote because remote is for ajax, it will send data asynchronously
 # scope because in boat_params there is param.require
-  
+   -->
 
   <div class="field">
     <%= form.label :make %>
@@ -22,7 +22,7 @@
 
   <div class="field">
     <%= form.label :condition %>
-    <%= form.text_field :condition %>
+    <%= form.select(:condition, ['New','Used']) %>
   </div>
 
   <div class="field">
@@ -58,8 +58,8 @@
   <div class="actions">
     <%= form.submit %>
   </div>
-<% end %>
 
+<% end %>
 
 <%= link_to 'Show', @boat %> |
 <%= link_to 'Back', boats_path %>

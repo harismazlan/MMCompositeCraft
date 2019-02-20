@@ -1,6 +1,5 @@
 class AppointmentsController < ApplicationController
 	before_action :set_appointment ,except: [:index, :new, :create, :all]
-	# before_action :require_login
 	
 	def index
 		@appointments = current_user.appointments
@@ -54,12 +53,14 @@ class AppointmentsController < ApplicationController
 	end
 
 	private
+
 	def appointment_params
 		params.require(:appointment).permit(
 			:appointment_date,
 			:appointment_info
 		)
 	end
+	
 	def set_appointment
 		@appointment = Appointment.find(params[:id])
 	end
