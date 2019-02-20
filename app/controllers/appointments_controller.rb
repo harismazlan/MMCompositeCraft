@@ -3,6 +3,8 @@ class AppointmentsController < ApplicationController
 	
 	def index
 		@appointments = current_user.appointments
+		@appointments = @appointments.order(appointment_date: :asc).page(params[:page])
+
 	end
 
 	def new
@@ -49,9 +51,12 @@ class AppointmentsController < ApplicationController
 	end
 
 	def all
-		@appointments = Appointment.all
-		@appointments = @appointments.order(appointment_date: :asc).page(params[:page])
-
+		if params[:search]
+	        @appointments = Appointment.all.search_appointment(params[:search]).page params[:page]
+	    else
+			@appointments = Appointment.all
+			@appointments = @appointments.order(user_id: :asc).page(params[:page])
+	    end
 	end
 
 	private
@@ -59,7 +64,8 @@ class AppointmentsController < ApplicationController
 	def appointment_params
 		params.require(:appointment).permit(
 			:appointment_date,
-			:appointment_info
+			:appointment_info,
+			:user_id
 		)
 	end
 	

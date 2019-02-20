@@ -4,10 +4,12 @@ class BoatsController < ApplicationController
 
 
   def index
-    @boats = Boat.all
-    @boats = @boats.order(id: :asc).page(params[:page])
-
-    # @boats = Boat.paginate(:page => params[:page])
+    if params[:search]
+      @boats = Boat.all.search_boat(params[:search]).page params[:page]
+    else
+      @boats = Boat.all
+      @boats = @boats.order(year: :asc).page(params[:page])
+    end
   end
 
   def show
