@@ -1,10 +1,11 @@
-User.create(first_name: "Mazlan", last_name: "Manaf", email: "mazlanmanaf@gmail.com", password: "123", phone_number: "+60122053600", access_level: 1)
-User.create(first_name: "Haris", last_name: "Mazlan", email: "haris_mazlan@yahoo.co.uk", password: "123", phone_number: "+60172621700", access_level: 1)
+# Seed Admins
+User.create(first_name: "Mazlan", last_name: "Manaf", email: "mazlanmanaf@gmail.com", password: "1234567", password_confirmation: "1234567", phone_number: "+60122053600", access_level: 1)
+User.create(first_name: "Haris", last_name: "Mazlan", email: "haris_mazlan@yahoo.co.uk", password: "1234567", password_confirmation: "1234567", phone_number: "+60172621700", access_level: 1)
 
 # Seed Users
 user = {}
-user['password'] = 'asdf'
-user['password_confirmation'] = 'asdf'
+user['password'] = 'asdfasd'
+user['password_confirmation'] = 'asdfasd'
 ActiveRecord::Base.transaction do
   400.times do 
     user['first_name'] = Faker::Name.first_name 

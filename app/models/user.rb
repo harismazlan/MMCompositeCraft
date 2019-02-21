@@ -1,8 +1,9 @@
 class User < ApplicationRecord
-  validates :first_name, :last_name, :password, presence: true
-  validates :password, length: {minimum:7}
+  validates :first_name, :last_name, presence: true
+  validates :password, length: {minimum:7}, on: :create
   validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   validates :email, presence: true, uniqueness: true
+  validates :password_confirmation, :password, presence: true, on: :create
   has_secure_password
   has_many :authentications, dependent: :destroy
   has_many :appointments, dependent: :destroy
@@ -10,7 +11,6 @@ class User < ApplicationRecord
   enum access_level: [:customer, :admin]
   include PgSearch
   pg_search_scope :search_user, :against => [:first_name]
-
 
  def self.create_with_auth_and_hash(authentication, auth_hash)
    user = self.create!(
