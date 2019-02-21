@@ -36,7 +36,7 @@ class AppointmentsController < ApplicationController
 			    client.messages.create({
 			      from: ENV["TWILIO_PHONE_NUMBER"],
 			      to: ENV["MY_PHONE_NUMBER"],
-			      body: 'Your appointment status has been updated! Please login into your account on our website and check for the status change!'
+			      body: 'Your appointment status has been updated! Please login into our website and check the updated status!'
 			    })
 				redirect_to all_appointments_path
 				flash[:notice] = 'Appointment updated!'
