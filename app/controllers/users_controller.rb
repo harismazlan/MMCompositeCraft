@@ -36,14 +36,27 @@ class UsersController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        redirect_to root_path
-        flash[:success] = 'Profile updated'
+    # check if pasword field is filled or not
+    if params[:user][:password] != '' && params[:user][:password_confirmation] != ''
+      # if filled, check for the length
+      if params[:user][:password].length > 6 && params[:user][:password_confirmation].length > 6
+        # if true, update user profile & password
+        if @user.update(user_params)
+          redirect_to root_path
+          flash[:success] = 'Profile updated'
+        else
+          redirect_to edit_user_path(@user.id)
+          flash[:error] = 'Something is wrong, please try again!'
+        end
+      # if password & password confirmation length < 7, return to edit_user_path
       else
         redirect_to edit_user_path(@user.id)
         flash[:error] = 'Something is wrong, please try again!'
       end
+    # if password field is not filled, update without updating user password
+    elsif @user.update(user_params)
+      redirect_to root_path
+      flash[:success] = 'Profile updated'
     end
   end
 

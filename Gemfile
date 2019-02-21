@@ -52,7 +52,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Use 'rspec-rails' to utilize rspec
   gem 'rspec-rails', '~> 3.8'
-
 end
 
 group :development do
