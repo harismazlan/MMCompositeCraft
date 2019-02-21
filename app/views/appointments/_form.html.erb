@@ -1,3 +1,8 @@
-<%= form.datetime_select :appointment_date, { order: [:day, :month, :year], minute_step: 15 } %>
-<%= form.label :appointment_info %>
-<%= form.text_field :appointment_info %>
+<% if current_user.admin? && @appointment.Pending? %>
+	<%= form.label :appointment_status %>
+	<%= form.select(:appointment_status, ['Pending','Accepted','Rejected']) %>
+<% else %>
+	<%= form.datetime_select :appointment_date, { order: [:day, :month, :year], minute_step: 15 } %>
+	<%= form.label :appointment_info %>
+	<%= form.text_field :appointment_info %>
+<% end %>

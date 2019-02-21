@@ -8,4 +8,8 @@
 <%= form.submit %>
 <% end %>
 
+<% if current_user.admin? %>
+<%= link_to 'Back', all_appointments_path %>
+<% else %>
 <%= link_to 'Back', user_appointments_path %>
+<% end %>

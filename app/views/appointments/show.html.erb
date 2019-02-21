@@ -3,9 +3,6 @@
 <p> Appointment Info : <%= @appointment.appointment_info %> </p>
 <p> Appointment Status : <%= @appointment.appointment_status %> </p>
 <% if @appointment.appointment_status == 'Pending' %>
-	<div id='update-button'>
-          <button class='btn btn-outline-primary mr-2' value="<%= @appointment.appointment_status %>" data-enums=1>Accept</button>
-          <button class='btn btn-outline-danger ml-2' value="<%= @appointment.appointment_status %>" data-enums=2>Decline</button>
-        </div>
+	<%= link_to 'Edit', edit_user_appointment_path %>
 <% end %>
 <%= link_to 'Back', all_appointments_path %>
