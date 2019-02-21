@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  validates :first_name, :last_name, :password, :phone_number, presence: true
+  validates :first_name, :last_name, :password, presence: true
   validates :password, length: {minimum:7}
   validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   validates :email, presence: true, uniqueness: true
@@ -15,6 +15,7 @@ class User < ApplicationRecord
  def self.create_with_auth_and_hash(authentication, auth_hash)
    user = self.create!(
      first_name: auth_hash["info"]["first_name"],
+     last_name: auth_hash["info"]["last_name"],
      email: auth_hash["info"]["email"],
      password: SecureRandom.hex(10)
    )

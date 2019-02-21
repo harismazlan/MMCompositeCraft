@@ -7,18 +7,25 @@ class AppointmentsController < ApplicationController
 	end
 
 	def new
-		@appointment = Appointment.new
+		if current_user.phone_number.nil?
+			redirect_to edit_user_path(current_user.id)
+			flash[:notice] = 'Please fill in your phone number before creating an appointment!'
+		else
+			@appointment = Appointment.new
+		end
 	end
 
 	def create
+
 		appointment = current_user.appointments.new(appointment_params)
-			if appointment.save
-				flash[:notice] = 'Appointment requested, please wait for a text on your phone to confirm the status'
-				redirect_to user_appointments_path(current_user.id)
-			else
-				flash[:error] = 'Unfortunately something went wrong, please try again!'
-				redirect_to user_appointments_path(current_user.id)
-			end
+		if appointment.save
+			flash[:notice] = 'Appointment requested, please wait for a text on your phone to confirm the status'
+			redirect_to user_appointments_path(current_user.id)
+		else
+			flash[:error] = 'Unfortunately something went wrong, please try again!'
+			redirect_to user_appointments_path(current_user.id)
+		end
+		
 	end
 
 	def edit

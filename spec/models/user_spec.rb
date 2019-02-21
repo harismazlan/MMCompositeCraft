@@ -16,10 +16,6 @@ RSpec.describe User, type: :model do
 		expect{ User.create!(first_name: 'sgdgf', email: 'dasdasd@example.com', password: 'qwertyu', phone_number: 'asdasdasd') }.to raise_error('Validation failed: Last name can\'t be blank')
 	end
 
-	it 'creates a new user without phone_number' do
-		expect{ User.create!(first_name: 'sgdgf', last_name: 'jshkshdfksd', email: 'dasdasd@example.com', password: 'qwertyu') }.to raise_error('Validation failed: Phone number can\'t be blank')
-	end
-
 	it 'creates a new user without password' do
 		expect{ User.create!(first_name: 'sgdgf', last_name: 'qwertyu', email: 'dasdasd@example.com', phone_number: 'asdasdasd') }.to raise_error('Validation failed: Password can\'t be blank, Password is too short (minimum is 7 characters)')
 	end
