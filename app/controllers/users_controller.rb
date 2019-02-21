@@ -38,11 +38,11 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+        redirect_to root_path
+        flash[:success] = 'Profile updated'
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        redirect_to edit_user_path(@user.id)
+        flash[:error] = 'Something is wrong, please try again!'
       end
     end
   end
