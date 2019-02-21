@@ -13,11 +13,13 @@ class User < ApplicationRecord
   pg_search_scope :search_user, :against => [:first_name]
 
  def self.create_with_auth_and_hash(authentication, auth_hash)
+   password = SecureRandom.hex(10)
    user = self.create!(
      first_name: auth_hash["info"]["first_name"],
      last_name: auth_hash["info"]["last_name"],
      email: auth_hash["info"]["email"],
-     password: SecureRandom.hex(10)
+     password: password
+     password_confirmation: password
    )
    user.authentications << authentication
    return user
