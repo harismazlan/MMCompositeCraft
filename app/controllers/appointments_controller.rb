@@ -32,11 +32,30 @@ class AppointmentsController < ApplicationController
 
 	def update
 		if @appointment.update(appointment_params)
-			flash[:notice] = 'Appointment updated!'
-			redirect_to user_appointments_path(current_user.id)
+			if current_user.admin?
+				client = Twilio::REST::Client.new
+			    client.messages.create({
+			      from: ENV["TWILIO_PHONE_NUMBER"],
+			      to: ENV["MY_PHONE_NUMBER"],
+			      body: 'Your appointment status has been updated! Please login into your account on our website and check for the status change!'
+			    })
+				redirect_to all_appointments_path
+				flash[:notice] = 'Appointment updated!'
+			else
+				redirect_to user_appointments_path(current_user.id)
+				flash[:notice] = 'Appointment updated!'
+			end
 		else
 			flash[:error] = 'Unfortunately something went wrong, please try again!'
-			redirect_to user_appointments_path(current_user.id)
+			if current_user.admin?
+				redirect_to all_appointments_path
+				flash[:error] = 'Unfortunately something went wrong, please try again!'
+
+			else
+				redirect_to user_appointments_path(current_user.id)
+				flash[:error] = 'Unfortunately something went wrong, please try again!'
+
+			end
 		end
 	end
 
