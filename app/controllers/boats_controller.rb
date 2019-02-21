@@ -1,7 +1,5 @@
 class BoatsController < ApplicationController
   before_action :set_boat, only: [:show, :edit, :update, :destroy]
-  # Boat.paginate(:page => params[:page], :per_page => 30)
-
 
   def index
     if params[:search]
@@ -17,12 +15,10 @@ class BoatsController < ApplicationController
   end
 
   def new
-    # authorization code
     if current_user.customer?
       flash[:notice] = "Sorry. You are not allowed to perform this action."
       return redirect_to boats_path, notice: "Sorry. You do not have the permission to create a listing."
     end
-    # end authorization code
   end
 
   def edit
@@ -35,8 +31,7 @@ class BoatsController < ApplicationController
       redirect_to boats_path
     else
       redirect_to new_boat_path
-    end
-    
+    end  
   end
 
   def update
@@ -62,4 +57,5 @@ class BoatsController < ApplicationController
     def boat_params
       params.require(:boat).permit(:make, :model, :year, :condition, :price, :make_type, :boat_class, :length, :fuel_type, :hull_material)
     end
+    
 end

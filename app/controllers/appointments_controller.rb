@@ -8,7 +8,6 @@ class AppointmentsController < ApplicationController
 
 	def new
 		@appointment = Appointment.new
-
 	end
 
 	def create
@@ -54,7 +53,6 @@ class AppointmentsController < ApplicationController
 			else
 				redirect_to user_appointments_path(current_user.id)
 				flash[:error] = 'Unfortunately something went wrong, please try again!'
-
 			end
 		end
 	end
@@ -76,18 +74,6 @@ class AppointmentsController < ApplicationController
 			@appointments = Appointment.all
 			@appointments = @appointments.order(appointment_date: :asc).page(params[:page])
 	    end
-	end
-
-	def update_appointment_status
-	    appointment_status = params[:appointment_status].to_i
-	    appointment.update(status: appointment_status)
-	    if @appointment_status.update(appointment_params)
-	    	flash[:notice] = 'Appointment Status Changed'
-	    	redirect_to user_appointment_path(current_user.id, appointment.id)
-	    else
-	    	flash[:error] = 'Unfortunately something went wrong, please try again!'
-	    	redirect_to user_appointment_path(current_user.id, appointment.id)
-		end   
 	end
 
 	private
