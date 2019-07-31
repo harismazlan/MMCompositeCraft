@@ -4,5 +4,5 @@
 <% end %>
 
 <div id='users-container'>
-  <%= render partial:"users/index" %>
+  <%= render partial:"users/index", :locals => { :users => @users } %>
 </div>

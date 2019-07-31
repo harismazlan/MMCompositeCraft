@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class BoatsController < ApplicationController
-  before_action :set_boat, only: [:show, :edit, :update, :destroy]
+  before_action :set_boat, only: %i[show edit update destroy]
 
   def index
     if params[:search]
@@ -16,8 +18,8 @@ class BoatsController < ApplicationController
 
   def new
     if current_user.customer?
-      flash[:notice] = "Sorry. You are not allowed to perform this action."
-      return redirect_to boats_path, notice: "Sorry. You do not have the permission to create a listing."
+      flash[:notice] = 'Sorry. You are not allowed to perform this action.'
+      redirect_to boats_path, notice: 'Sorry. You do not have the permission to create a listing.'
     end
   end
 
@@ -31,13 +33,11 @@ class BoatsController < ApplicationController
       redirect_to boats_path
     else
       redirect_to new_boat_path
-    end  
+    end
   end
 
   def update
-      if @boat.update(boat_params)
-        redirect_to boat_path(@boat.id)
-      end
+    redirect_to boat_path(@boat.id) if @boat.update(boat_params)
   end
 
   def destroy
@@ -50,12 +50,11 @@ class BoatsController < ApplicationController
 
   private
 
-    def set_boat
-      @boat = Boat.find(params[:id])
-    end
+  def set_boat
+    @boat = Boat.find(params[:id])
+  end
 
-    def boat_params
-      params.require(:boat).permit(:make, :model, :year, :condition, :price, :make_type, :boat_class, :length, :fuel_type, :hull_material)
-    end
-    
+  def boat_params
+    params.require(:boat).permit(:make, :model, :year, :condition, :price, :make_type, :boat_class, :length, :fuel_type, :hull_material)
+  end
 end

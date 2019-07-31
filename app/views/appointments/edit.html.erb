@@ -3,8 +3,8 @@
 <%= form_with model: [current_user, @appointment], local: true, scope: :appointment do |form| %>
 <!-- # local instead of remote because remote is for ajax, it will send data asynchronously
 # scope because in boat_params there is param.require -->
-  
-<%= render partial: 'form', object: form %>
+
+<%= render 'form', f: f %>
 <%= form.submit %>
 <% end %>
 

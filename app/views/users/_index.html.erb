@@ -1,5 +1,5 @@
 <h1>Users</h1>
-<%= paginate @users %>
+<%= paginate users %>
 <table>
   <thead>
     <tr>
@@ -12,7 +12,7 @@
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
+    <% users.each do |user| %>
       <tr>
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
@@ -23,6 +23,6 @@
     <% end %>
   </tbody>
 </table>
-<%= paginate @users %>
+<%= paginate users %>
 <br>
 <%= link_to 'Back', root_path %>

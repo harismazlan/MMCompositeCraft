@@ -1,7 +1,7 @@
 <h1> New Appointment </h1>
 
 <%= form_with url:user_appointments_path(current_user.id), local:true, scope: :appointment do |form| %>
-	<%= render partial: 'appointments/form', object: form %>
+	<%= render partial: 'appointments/form', object: form, :locals => { :appointment => @appointment } %>
 	<%= form.submit "Book" %>
 <%end%>
 
