@@ -1,4 +1,4 @@
-<% if current_user.admin? && @appointment.Pending? %>
+<% if current_user.admin? && appointment.Pending? %>
 	<%= form.label :appointment_status %>
 	<%= form.select(:appointment_status, ['Pending','Accepted','Rejected']) %>
 <% else %>
