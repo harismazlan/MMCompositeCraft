@@ -4,6 +4,6 @@
 <% end %>
 
 <div id='appointment-container'>
-	<%= render partial:"appointments/all" %>
+	<%= render partial:"appointments/all" , :locals => { :appointments => @appointments } %>
 </div>
 
