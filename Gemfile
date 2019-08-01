@@ -15,6 +15,8 @@ gem 'twilio-ruby'
 gem 'figaro'
 # Use 'omniauth-google-oauth2' for user authentication using oauth
 gem 'omniauth-google-oauth2'
+# Use 'omniauth-rails_csrf_protection' for security issues
+gem 'omniauth-rails_csrf_protection'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
