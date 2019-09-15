@@ -3,5 +3,5 @@
 	<%= form.submit 'Search', class:'btn btn-primary ml-2' %>
 <% end %>
 <div id='boats-container'>
-	<%= render partial:"boats/index", locals => { :boats => @boats }%>
+	<%= render partial:"boats/index", locals: { :boats => @boats }%>
 </div>
