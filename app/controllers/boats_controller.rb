@@ -17,6 +17,7 @@ class BoatsController < ApplicationController
   end
 
   def new
+    @boat = Boat.new
     if current_user.customer?
       flash[:notice] = 'Sorry. You are not allowed to perform this action.'
       redirect_to boats_path, notice: 'Sorry. You do not have the permission to create a listing.'

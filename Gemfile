@@ -5,6 +5,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.0'
 
+# Use 'carrierwave' for Amazon S3 Photo uploading function
+gem 'carrierwave'
 # Use 'pg_search' for search function
 gem 'pg_search'
 # Use gem 'kaminari' for pagination
@@ -57,6 +59,8 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Use 'rspec-rails' to utilize rspec
   gem 'rspec-rails', '~> 3.8'
+  # Use 'rb-readline' library as it provides a pure Ruby implementation of the GNU readline C library, as well as the readline extension that ships as part of the standard library.
+  gem 'rb-readline'
 end
 
 group :development do
