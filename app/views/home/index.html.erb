@@ -1,27 +1,50 @@
-<% if current_user %>
-  Logged in as <%= current_user.email %>.
-  <%= link_to "Log Out", logout_path %>
-<% else %>
-  <%= link_to "Sign Up", signup_path %> or
-  <%= link_to "Log In", login_path %> <br/>
-  <%= link_to "Sign in with Google", "/auth/google_oauth2", method: :post %>
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Landing Page </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
 
-<% end %>
-<p id=”notice”><%= notice %></p>
+  <body>
+    <div class="row">
+      <div class="col-md-12">
+        <% if current_user %>
+          Logged in as <%= current_user.email %>.
+          <%= link_to "Log Out", logout_path %>
+        <% else %>
+          <%= link_to "Sign Up", signup_path %> or
+          <%= link_to "Log In", login_path %> <br/>
+          <%= link_to "Sign in with Google", "/auth/google_oauth2", method: :post %>
+        <% end %>
+      </div>
+    <div>
 
-<h1>Landing Page</h1>
-<p>Welcome to MMCompositeCraft!</p>
-<p>Please sign in to browse our products or schedule an appointment with us for some tweaks and special requests of your own!</p>
+    <div class="row">
+      <div class="col-md-12">
+        <h1>MMCompositeCraft</h1>
+        <p>Welcome to your naval solution stop!</p>
+        <p>Please sign in to browse our products or schedule an appointment with us for some design tweaks and special requests of your own!</p>
 
-<% if current_user %>
-	<% if current_user.admin? %>
-		<%= link_to "View Products", boats_path(current_user.id) %>
-		<%= link_to "View Users", users_path(current_user.id) %>
-		<%= link_to "View All Appointments", all_appointments_path %>
-	<% else %>
-		<%= link_to "View Profile", user_path(current_user.id) %>
-		<%= link_to "View Products", boats_path %>
-		<%= link_to "Book An Appointment", new_user_appointment_path(current_user.id) %>
-		<%= link_to "View Your Appointments", user_appointments_path(current_user.id) %>
-	<% end %>
-<% end %>
+        <% if current_user %>
+          <% if current_user.admin? %>
+            <%= link_to "View Products", boats_path(current_user.id) %>
+            <%= link_to "View Users", users_path(current_user.id) %>
+            <%= link_to "View All Appointments", all_appointments_path %>
+          <% else %>
+            <h1>MMCompositeCraft</h1>
+            Welcome Back <%= current_user.email %>!
+            <p>Welcome to your naval solution stop!</p>
+            <%= link_to "View Profile", user_path(current_user.id) %>
+            <%= link_to "View Products", boats_path %>
+            <%= link_to "Book An Appointment", new_user_appointment_path(current_user.id) %>
+            <%= link_to "View Your Appointments", user_appointments_path(current_user.id) %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <script src="" async defer></script>
+  </body>
+</html>
