@@ -9,24 +9,60 @@
   </head>
 
   <body>
-    <div class="row">
-      <div class="col-md-12">
-        <% if current_user %>
-          Logged in as <%= current_user.email %>.
-          <%= link_to "Log Out", logout_path %>
-        <% else %>
-          <%= link_to "Sign Up", signup_path %> or
-          <%= link_to "Log In", login_path %> <br/>
-          <%= link_to "Sign in with Google", "/auth/google_oauth2", method: :post %>
-        <% end %>
-      </div>
-    <div>
-
+    <!-- Main navigation -->
+        <header>
+          <!-- Full Page Intro -->
+          <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/architecture.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+            <!-- Mask & flexbox options-->
+            <div class="mask rgba-gradient align-items-center">
+              <!-- Content -->
+              <div class="container">
+                <!--Grid row-->
+                <div class="row">
+                  <!--Grid column-->
+                  <div class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 wow fadeInLeft" data-wow-delay="0.3s">
+                    <h1 class="h1-responsive font-weight-bold mt-sm-5">Customization Of Catamarans</h1>
+                    <hr class="hr-light">
+                    <h6 class="mb-4">Browse through our products. Add in your personal touch and customization in designing your very own catamaran to cater to either your personal need or to meet your business demands!</h6>
+                    <a class="btn btn-outline-white">Our Products</a>
+                    <a class="btn btn-outline-white">Users</a>
+                    <a class="btn btn-outline-white">View Appointments</a>
+                  </div>
+                  <!--Grid column-->
+                  <!--Grid column-->
+                  <div class="col-md-6 col-xl-5 mt-xl-5 wow fadeInRight" data-wow-delay="0.3s">
+                    <img src="https://mdbootstrap.com/img/Mockups/Transparent/Small/admin-new.png" alt="" class="img-fluid">
+                  </div>
+                  <!--Grid column-->
+                </div>
+                <!--Grid row-->
+              </div>
+              <!-- Content -->
+            </div>
+            <!-- Mask & flexbox options-->
+          </div>
+          <!-- Full Page Intro -->
+        </header>
+        <!-- Main navigation -->
+        <!--Main Layout-->
+        <main>
+          <div class="container">
+            <!--Grid row-->
+            <div class="row py-5">
+              <!--Grid column-->
+              <div class="col-md-12 text-center">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+              <!--Grid column-->
+            </div>
+            <!--Grid row-->
+          </div>
+        </main>
+        <!--Main Layout-->
     <div class="row">
       <div class="col-md-12">
         <h1>MMCompositeCraft</h1>
         <p>Welcome to your naval solution stop!</p>
-        <p>Please sign in to browse our products or schedule an appointment with us for some design tweaks and special requests of your own!</p>
 
         <% if current_user %>
           <% if current_user.admin? %>
@@ -42,6 +78,8 @@
             <%= link_to "Book An Appointment", new_user_appointment_path(current_user.id) %>
             <%= link_to "View Your Appointments", user_appointments_path(current_user.id) %>
           <% end %>
+        <% else %>
+          <p>Please sign in to browse our products or schedule an appointment with us for some design tweaks and special requests of your own!</p>
         <% end %>
       </div>
     </div>

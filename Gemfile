@@ -5,6 +5,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.0'
 
+# Use 'carrierwave' for Amazon S3 Photo uploading function
+gem 'carrierwave'
 # Use 'pg_search' for search function
 gem 'pg_search'
 # Use gem 'kaminari' for pagination

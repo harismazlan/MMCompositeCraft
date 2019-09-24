@@ -1,4 +1,9 @@
 <%= form_with url: boats_path, local: true, scope: :boat do |form| %>
+  <% if @boat.errors.any? %>
+    <% @boat.errors.full_messages.each do |msg| %>
+      <div class="alert alert-danger"><%= msg %></div>
+    <% end %>
+  <% end %>
 
   <div class="field">
     <%= form.label :make %>
